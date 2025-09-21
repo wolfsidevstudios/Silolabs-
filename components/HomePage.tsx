@@ -55,6 +55,18 @@ const Section: React.FC<{ children: React.ReactNode, className?: string}> = ({ c
     <div className={`py-16 sm:py-24 ${className}`}>{children}</div>
 );
 
+const CodeBlock: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+    <pre className="bg-zinc-900/70 border border-zinc-700 rounded-lg p-4 my-4 overflow-x-auto">
+        <code className="text-sm text-gray-300 font-mono">
+            {children}
+        </code>
+    </pre>
+);
+
+const ArticleSubheading: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+    <h4 className="text-xl font-bold text-gray-200 mt-6 mb-3">{children}</h4>
+);
+
 const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
   const featuredLab = LABS.find(lab => lab.id === 1); // Silo Labs Build
 
@@ -63,29 +75,125 @@ const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
       icon: <CodeBracketIcon />,
       category: 'API Integration',
       title: 'Getting Started with the Silo Search API',
-      description: 'A comprehensive guide to integrating our powerful search capabilities into your applications. Explore endpoints, authentication, and best practices.',
-      link: '#', 
+      content: (
+          <div className="prose prose-invert prose-p:text-gray-400 prose-li:text-gray-400">
+              <p>A comprehensive guide to integrating our powerful search capabilities into your applications. Explore endpoints, authentication, and best practices to get up and running in minutes.</p>
+              
+              <ArticleSubheading>1. Authentication</ArticleSubheading>
+              <p>All requests to the Silo Search API must be authenticated. Obtain your API key from your developer dashboard and include it in the `Authorization` header as a Bearer token.</p>
+
+              <ArticleSubheading>2. Making a Request</ArticleSubheading>
+              <p>Our primary endpoint is `https://api.silo.ai/v1/search`. Send a POST request with a JSON body containing your query and any optional parameters.</p>
+              <CodeBlock>{`
+fetch('https://api.silo.ai/v1/search', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer YOUR_API_KEY'
+  },
+  body: JSON.stringify({
+    query: "latest trends in generative AI",
+    limit: 10
+  })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+              `}</CodeBlock>
+
+              <ArticleSubheading>3. Understanding the Response</ArticleSubheading>
+              <p>The API will return a JSON object containing a `results` array. Each object in the array represents a search result with a title, snippet, URL, and relevance score.</p>
+              <CodeBlock>{`
+{
+  "results": [
+    {
+      "title": "Generative AI's Next Wave...",
+      "snippet": "Exploring how diffusion models are changing the landscape of digital art and design.",
+      "url": "https://example.com/article-1",
+      "score": 0.98
+    },
+    ...
+  ]
+}
+              `}</CodeBlock>
+          </div>
+      )
     },
     {
       icon: <CpuChipIcon />,
       category: 'Deep Learning',
       title: 'Optimizing Model Performance for Real-Time Applications',
-      description: 'Learn the techniques we use at Silo Deep Labs to achieve low-latency and high-throughput for complex neural networks.',
-      link: '#', 
+      content: (
+        <div className="prose prose-invert prose-p:text-gray-400 prose-li:text-gray-400">
+            <p>Learn the techniques we use at Silo Deep Labs to achieve low-latency and high-throughput for complex neural networks, ensuring a seamless user experience.</p>
+
+            <ArticleSubheading>Model Quantization</ArticleSubheading>
+            <p>One of the most effective optimization techniques is quantization. By reducing the precision of the model's weights from 32-bit floating-point numbers to 8-bit integers (INT8), we can significantly decrease the model size and speed up computation with minimal impact on accuracy. This is especially crucial for deployment on edge devices.</p>
+
+            <ArticleSubheading>Knowledge Distillation</ArticleSubheading>
+            <p>This "teacher-student" approach involves training a smaller, more compact model (the student) to mimic the behavior of a larger, more complex model (the teacher). The student learns to replicate the teacher's output distribution, effectively capturing its knowledge in a much more efficient package.</p>
+            
+            <ArticleSubheading>Caching Strategies</ArticleSubheading>
+            <p>For many applications, user queries follow predictable patterns. We implement multi-level caching systems:</p>
+            <ul>
+                <li><strong>Query Caching:</strong> Storing the final results for common queries.</li>
+                <li><strong>Embedding Caching:</strong> Storing the vector representations of frequently accessed data to avoid re-computation.</li>
+            </ul>
+        </div>
+      )
     },
     {
       icon: <PaintBrushIcon />,
       category: 'Generative AI',
       title: 'Advanced Techniques in Generative Art with Silo Canvas',
-      description: 'Move beyond basic prompts. This tutorial covers advanced methods for controlling style, composition, and coherence in AI-generated imagery.',
-      link: '#', 
+      content: (
+        <div className="prose prose-invert prose-p:text-gray-400 prose-li:text-gray-400">
+            <p>Move beyond basic prompts. This tutorial covers advanced methods for controlling style, composition, and coherence in AI-generated imagery using Silo Canvas.</p>
+            
+            <ArticleSubheading>Semantic Layering</ArticleSubheading>
+            <p>Instead of a single prompt, Silo Canvas allows you to define multiple semantic layers. Each layer has its own prompt, weight, and optional placement mask. This gives you granular control over the final image.</p>
+            <CodeBlock>{`
+// Example of a layered prompt
+{
+  "layers": [
+    { "prompt": "a vast, starry night sky", "weight": 1.0 },
+    { "prompt": "a glowing purple nebula", "weight": 0.8, "mask": "top-right" },
+    { "prompt": "a lone astronaut floating", "weight": 0.9, "mask": "center" }
+  ]
+}
+            `}</CodeBlock>
+
+            <ArticleSubheading>Style Tokenization</ArticleSubheading>
+            <p>Inject specific artistic styles into your creations using style tokens. You can control the intensity of the style's influence.</p>
+            <ul>
+                <li>`A cat sitting on a windowsill <style:van_gogh(0.75)>`</li>
+                <li>`A futuristic cityscape <style:cyberpunk(0.9)> <style:film_noir(0.4)>`</li>
+            </ul>
+            <p>This technique allows for powerful style mixing and fine-tuning that is difficult to achieve with descriptive words alone.</p>
+        </div>
+      )
     },
     {
       icon: <ChatBubbleIcon />,
       category: 'UX & Conversational AI',
       title: 'The Philosophy Behind Silo Chat\'s Natural Language',
-      description: 'An inside look at how we design conversational flows that are intuitive, engaging, and genuinely helpful for users.',
-      link: '#',
+      content: (
+        <div className="prose prose-invert prose-p:text-gray-400 prose-li:text-gray-400">
+            <p>An inside look at how we design conversational flows that are intuitive, engaging, and genuinely helpful for users, moving beyond simple question-and-answer interactions.</p>
+            
+            <ArticleSubheading>Context is King</ArticleSubheading>
+            <p>A successful conversation relies on memory. Silo Chat employs a sophisticated context management system that tracks entities, intents, and user history throughout a session. This allows for natural follow-up questions and references to earlier parts of the conversation without forcing the user to repeat themselves.</p>
+
+            <ArticleSubheading>Graceful Failure</ArticleSubheading>
+            <p>When the AI encounters ambiguity or doesn't understand a request, the worst response is a blunt "I don't understand." Our philosophy is to turn these moments into opportunities for clarification. Silo Chat will:</p>
+            <ul>
+                <li>Offer suggestions based on its partial understanding.</li>
+                <li>Ask targeted clarifying questions to disambiguate the user's intent.</li>
+                <li>Provide an easy way to rephrase or try a different approach.</li>
+            </ul>
+            <p>This makes the interaction feel like a collaborative effort rather than a brittle command-line interface.</p>
+        </div>
+      )
     }
   ];
 
@@ -190,24 +298,22 @@ const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
             <p className="text-lg text-gray-400 text-center mb-12 max-w-2xl mx-auto">
                 Dive deep into our technology with these guides, tutorials, and articles from the Silo AI team.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-16">
                 {developerArticles.map((article, index) => (
-                    <a key={index} href={article.link} className="block p-6 border border-zinc-800 rounded-2xl bg-zinc-900/30 group hover:border-purple-500/50 transition-all duration-300 transform hover:-translate-y-1">
-                        <div className="flex items-start gap-4">
+                    <article key={index} className="p-8 border border-zinc-800 rounded-2xl bg-zinc-900/30">
+                        <div className="flex items-start gap-4 mb-6">
                             <div className="bg-zinc-800 p-3 rounded-lg mt-1">
                                 {article.icon}
                             </div>
                             <div className='flex-1'>
                                 <span className="text-sm font-semibold text-purple-400">{article.category}</span>
-                                <h3 className="text-lg font-bold text-white mt-1">{article.title}</h3>
+                                <h3 className="text-2xl font-bold text-white mt-1">{article.title}</h3>
                             </div>
                         </div>
-                        <p className="text-gray-400 my-4">{article.description}</p>
-                        <span className="text-purple-400 flex items-center gap-2 font-semibold group-hover:text-purple-300 transition-colors">
-                            Read Article
-                            <ArrowIcon className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-                        </span>
-                    </a>
+                        <div className="border-t border-zinc-800 pt-6">
+                            {article.content}
+                        </div>
+                    </article>
                 ))}
             </div>
         </div>
