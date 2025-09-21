@@ -1,4 +1,3 @@
-// Fix: Define and export the Lab and Page types.
 export interface Lab {
   id: number;
   name: string;
@@ -9,4 +8,10 @@ export interface Lab {
   status: 'live' | 'coming_soon';
 }
 
-export type Page = 'Home' | 'Labs' | 'News' | 'Sponsors';
+export interface BetaMember {
+  name: string;
+  memberCode: string;
+  profileImage: string; // base64 string
+}
+
+export type Page = 'Home' | 'Labs' | 'News' | 'Sponsors' | 'Beta Program' | 'Access Card';
