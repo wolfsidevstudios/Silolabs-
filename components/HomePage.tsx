@@ -29,12 +29,65 @@ const ArrowIcon: React.FC<{ className?: string }> = ({ className }) => (
     </svg>
 );
 
+// Icons for Developer Articles
+const CodeBracketIcon: React.FC = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-purple-400">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+    </svg>
+);
+const CpuChipIcon: React.FC = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-blue-400">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 21v-1.5M15.75 3v1.5m0 16.5v-1.5m3.75-12H21m-3.75 0h1.5m-1.5 0H21m-3.75 0h1.5m0 0H21m-3.75 4.5H21m-3.75 0h1.5m-1.5 0H21m-3.75 0h1.5m0 0H21m-16.5-4.5H3m1.5 0H3m1.5 0H3m1.5 0H3m0 0H3m1.5 4.5H3m1.5 0H3m1.5 0H3m1.5 0H3m0 0H3m1.5 0H3m12-15v1.5m0 15v-1.5" />
+    </svg>
+);
+const PaintBrushIcon: React.FC = () => (
+     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-yellow-400">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.47 2.118v-.007a2.25 2.25 0 0 1 2.22-2.22h.002a2.25 2.25 0 0 1 2.22 2.22v.007a2.25 2.25 0 0 1-2.47-2.118a3 3 0 0 0 5.78-1.128Zm-2.83-3.792a4.5 4.5 0 0 0 2.83-4.498m-3.418 4.498a4.5 4.5 0 0 0 3.418-4.498m0 0a4.5 4.5 0 0 0-2.83 4.498m0 0a4.5 4.5 0 0 0 2.83 4.498M16.5 21a4.5 4.5 0 0 0-9 0h9Zm0 0c0-1.077-.285-2.09-.79-3m.79 3c0-1.078-.285-2.091-.79-3.001m-4.21 3.001a4.5 4.5 0 0 0-4.21-3.001" />
+    </svg>
+);
+const ChatBubbleIcon: React.FC = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-400">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.76 9.76 0 0 1-2.53-.388m-13.022-3.412a3.375 3.375 0 0 1 .163-3.313l3.295-4.392a3.375 3.375 0 0 1 4.267-1.433l.49.245a3.375 3.375 0 0 1 2.986 4.664l-2.75 3.667a3.375 3.375 0 0 1-4.267 1.433Z" />
+    </svg>
+);
+
 const Section: React.FC<{ children: React.ReactNode, className?: string}> = ({ children, className = '' }) => (
     <div className={`py-16 sm:py-24 ${className}`}>{children}</div>
 );
 
 const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
   const featuredLab = LABS.find(lab => lab.id === 1); // Silo Labs Build
+
+  const developerArticles = [
+    {
+      icon: <CodeBracketIcon />,
+      category: 'API Integration',
+      title: 'Getting Started with the Silo Search API',
+      description: 'A comprehensive guide to integrating our powerful search capabilities into your applications. Explore endpoints, authentication, and best practices.',
+      link: '#', 
+    },
+    {
+      icon: <CpuChipIcon />,
+      category: 'Deep Learning',
+      title: 'Optimizing Model Performance for Real-Time Applications',
+      description: 'Learn the techniques we use at Silo Deep Labs to achieve low-latency and high-throughput for complex neural networks.',
+      link: '#', 
+    },
+    {
+      icon: <PaintBrushIcon />,
+      category: 'Generative AI',
+      title: 'Advanced Techniques in Generative Art with Silo Canvas',
+      description: 'Move beyond basic prompts. This tutorial covers advanced methods for controlling style, composition, and coherence in AI-generated imagery.',
+      link: '#', 
+    },
+    {
+      icon: <ChatBubbleIcon />,
+      category: 'UX & Conversational AI',
+      title: 'The Philosophy Behind Silo Chat\'s Natural Language',
+      description: 'An inside look at how we design conversational flows that are intuitive, engaging, and genuinely helpful for users.',
+      link: '#',
+    }
+  ];
 
   return (
     <div className="space-y-16">
@@ -129,6 +182,37 @@ const HomePage: React.FC<HomePageProps> = ({ setActivePage }) => {
           </div>
         </Section>
       )}
+
+      {/* Developer Articles Section */}
+      <Section>
+        <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-white mb-4">Developer Resources</h2>
+            <p className="text-lg text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+                Dive deep into our technology with these guides, tutorials, and articles from the Silo AI team.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {developerArticles.map((article, index) => (
+                    <a key={index} href={article.link} className="block p-6 border border-zinc-800 rounded-2xl bg-zinc-900/30 group hover:border-purple-500/50 transition-all duration-300 transform hover:-translate-y-1">
+                        <div className="flex items-start gap-4">
+                            <div className="bg-zinc-800 p-3 rounded-lg mt-1">
+                                {article.icon}
+                            </div>
+                            <div className='flex-1'>
+                                <span className="text-sm font-semibold text-purple-400">{article.category}</span>
+                                <h3 className="text-lg font-bold text-white mt-1">{article.title}</h3>
+                            </div>
+                        </div>
+                        <p className="text-gray-400 my-4">{article.description}</p>
+                        <span className="text-purple-400 flex items-center gap-2 font-semibold group-hover:text-purple-300 transition-colors">
+                            Read Article
+                            <ArrowIcon className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                        </span>
+                    </a>
+                ))}
+            </div>
+        </div>
+      </Section>
+
 
       {/* Final CTA */}
       <Section>
