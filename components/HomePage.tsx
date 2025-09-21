@@ -166,8 +166,9 @@ fetch('https://api.silo.ai/v1/search', {
             <ArticleSubheading>Style Tokenization</ArticleSubheading>
             <p>Inject specific artistic styles into your creations using style tokens. You can control the intensity of the style's influence.</p>
             <ul>
-                <li>`A cat sitting on a windowsill <style:van_gogh(0.75)>`</li>
-                <li>`A futuristic cityscape <style:cyberpunk(0.9)> <style:film_noir(0.4)>`</li>
+                {/* FIX: The text below was being parsed as JSX components. Wrapping in a string literal to prevent this. */}
+                <li>{"`A cat sitting on a windowsill <style:van_gogh(0.75)>`"}</li>
+                <li>{"`A futuristic cityscape <style:cyberpunk(0.9)> <style:film_noir(0.4)>`"}</li>
             </ul>
             <p>This technique allows for powerful style mixing and fine-tuning that is difficult to achieve with descriptive words alone.</p>
         </div>
