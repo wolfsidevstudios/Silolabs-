@@ -1,0 +1,62 @@
+import { Lab } from './types';
+
+export const LABS: Lab[] = [
+  {
+    id: 1,
+    name: 'Silo Labs Build',
+    badge: 'build',
+    badgeColorClasses: 'bg-blue-900/50 text-blue-300 border border-blue-500/30',
+    description: 'A creative platform for generating and visualizing innovative concepts.',
+    link: 'https://silocreative.netlify.app/',
+    status: 'live',
+  },
+  {
+    id: 2,
+    name: 'Silo Labs Search',
+    badge: 'search',
+    badgeColorClasses: 'bg-green-900/50 text-green-300 border border-green-500/30',
+    description: 'An intelligent search engine powered by advanced AI models.',
+    link: 'https://silosearchai.netlify.app/',
+    status: 'live',
+  },
+  {
+    id: 3,
+    name: 'Silo Deep Labs',
+    badge: 'coming soon',
+    badgeColorClasses: 'bg-yellow-900/50 text-yellow-300 border border-yellow-500/30',
+    description: 'Currently under development. Pushing the boundaries of deep learning.',
+    status: 'coming_soon',
+  },
+  {
+    id: 4,
+    name: 'Silo Labs Canvas',
+    badge: 'coming soon',
+    badgeColorClasses: 'bg-purple-900/50 text-purple-300 border border-purple-500/30',
+    description: 'An AI-powered digital canvas for collaborative and creative visual projects.',
+    status: 'coming_soon',
+  },
+  {
+    id: 5,
+    name: 'Silo Labs Chat',
+    badge: 'coming soon',
+    badgeColorClasses: 'bg-pink-900/50 text-pink-300 border border-pink-500/30',
+    description: 'A next-generation conversational AI for seamless human-computer interaction.',
+    status: 'coming_soon',
+  },
+  {
+    id: 6,
+    name: 'Silo Connect',
+    badge: 'coming soon',
+    badgeColorClasses: 'bg-indigo-900/50 text-indigo-300 border border-indigo-500/30',
+    description: 'An intelligent networking platform to connect professionals and ideas.',
+    status: 'coming_soon',
+  },
+  {
+    id: 7,
+    name: 'Silo Studio',
+    badge: 'coming soon',
+    badgeColorClasses: 'bg-teal-900/50 text-teal-300 border border-teal-500/30',
+    description: 'A suite of AI tools for content creators to enhance their workflow.',
+    status: 'coming_soon',
+  },
+];
